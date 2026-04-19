@@ -1,103 +1,120 @@
+/**
+ * PROGRAMA DE CONSCIENTIZAÇÃO E RESILIÊNCIA CIBERNÉTICA
+ * Sistema de Navegação e Narração Automática
+ */
+
 const slides = document.querySelectorAll('.slide');
 const audio = document.getElementById('audioPlayer');
-const bgMusic = document.getElementById('bgMusic'); 
 const btnPlay = document.getElementById('btnPlay');
 const btnNext = document.getElementById('btnNext');
 const btnPrev = document.getElementById('btnPrev');
 const progressBar = document.getElementById('progress-bar');
 const slideInfo = document.getElementById('slide-info');
+const btnStart = document.getElementById('btnStart');
+const overlay = document.getElementById('overlay');
+const mainContent = document.getElementById('slider');
+const controls = document.querySelector('.controls');
 
 let currentIndex = 0;
-let isPausedManually = false; 
+let isPausedManually = false; // Define se o usuário pausou o áudio por conta própria
 
-// CONFIGURAÇÃO DE VOLUME (0.0 a 1.0)
-if (bgMusic) {
-    bgMusic.volume = 0.04; // Volume bem baixo (5%) como solicitado
-}
-if (audio) {
-    audio.volume = 1.0; // Narração em volume máximo
-}
+/**
+ * INICIALIZAÇÃO: Destrava o áudio e mostra a interface
+ * Exigido por navegadores modernos para permitir som automático
+ */
+btnStart.addEventListener('click', () => {
+    overlay.style.transition = 'opacity 0.5s ease';
+    overlay.style.opacity = '0';
+    
+    setTimeout(() => {
+        overlay.style.display = 'none';
+        mainContent.style.display = 'flex';
+        controls.style.display = 'flex';
+        
+        // Verifica se há progresso salvo, senão começa do zero
+        const savedProgress = localStorage.getItem('usaflex_progress');
+        currentIndex = savedProgress ? parseInt(savedProgress) : 0;
+        
+        updatePresentation(currentIndex);
+    }, 500);
+});
 
-// Inicializa o sistema
-function init() {
-    if (localStorage.getItem('savedSlide')) {
-        currentIndex = parseInt(localStorage.getItem('savedSlide'));
-    }
-    updatePresentation(currentIndex);
-}
-
-// Função para gerenciar o estado da música de fundo baseado na narração
-function syncBackgroundMusic() {
-    if (bgMusic) {
-        if (!isPausedManually) {
-            bgMusic.play().catch(e => console.log("Aguardando interação..."));
-        } else {
-            bgMusic.pause();
-        }
-    }
-}
-
-// Função Principal de Atualização
+/**
+ * FUNÇÃO PRINCIPAL: Atualiza Slide, Áudio e Barra de Progresso
+ */
 function updatePresentation(index) {
-    // Para a narração atual para trocar de arquivo
+    // 1. Limpa o estado do áudio anterior
     audio.pause();
     audio.currentTime = 0;
 
-    // Atualiza classes dos slides
+    // 2. Alterna a visibilidade dos slides
     slides.forEach((slide, i) => {
         slide.classList.toggle('active', i === index);
     });
 
-    // Atualiza a Barra de Progresso
-    const progress = ((index + 1) / slides.length) * 100;
-    progressBar.style.width = `${progress}%`;
+    // 3. Atualiza Elementos Visuais (Progresso e Contador)
+    const progressPercent = ((index + 1) / slides.length) * 100;
+    progressBar.style.width = `${progressPercent}%`;
+    slideInfo.innerText = `SLIDE ${index + 1} / ${slides.length}`;
 
-    // Atualiza o contador
-    slideInfo.innerText = `Slide ${index + 1} / ${slides.length}`;
-
-    // Define o novo arquivo de narração
+    // 4. Carrega a nova narração (Caminho: audio/audio1.mp3 ...)
     audio.src = `audio/audio${index + 1}.mp3`;
 
-    // Se o usuário não pausou manualmente, toca a narração E a música de fundo
+    // 5. Tenta tocar automaticamente (se não estiver em modo de pausa manual)
     if (!isPausedManually) {
-        audio.play().catch(error => {
-            console.log("Autoplay bloqueado. Clique em Play.");
-            btnPlay.innerText = "RETOMAR";
-        });
-        syncBackgroundMusic(); 
-        btnPlay.innerText = "PAUSAR NARRAÇÃO";
+        const playPromise = audio.play();
+        
+        if (playPromise !== undefined) {
+            playPromise.then(() => {
+                btnPlay.innerText = "PAUSAR";
+            }).catch(error => {
+                console.log("Autoplay bloqueado. Aguardando interação.");
+                btnPlay.innerText = "RETOMAR";
+            });
+        }
     } else {
-        bgMusic.pause();
-        btnPlay.innerText = "RETOMAR NARRAÇÃO";
+        btnPlay.innerText = "RETOMAR";
     }
 
-    localStorage.setItem('savedSlide', index);
+    // 6. Salva o progresso atual
+    localStorage.setItem('usaflex_progress', index);
 }
 
-// EVENTO: Quando a narração termina, pula automaticamente
+/**
+ * SISTEMA INTELIGENTE: Passar de slide sozinho ao fim do áudio
+ */
 audio.addEventListener('ended', () => {
     if (currentIndex < slides.length - 1) {
         currentIndex++;
         updatePresentation(currentIndex);
     } else {
-        bgMusic.pause(); // Para a música no final de tudo
-        btnPlay.innerText = "REPLAY FINAL";
-        alert("Treinamento concluído com sucesso!");
+        // Fim de todos os slides
+        btnPlay.innerText = "REINICIAR";
+        alert("Você concluiu o Programa de Resiliência Cibernética!");
     }
 });
 
-// Botão Play/Pause (Sincronizado)
+/**
+ * CONTROLES MANUAIS
+ */
+
+// Play / Pause
 btnPlay.addEventListener('click', () => {
-    if (audio.paused) {
+    if (btnPlay.innerText === "REINICIAR") {
+        currentIndex = 0;
         isPausedManually = false;
+        updatePresentation(currentIndex);
+        return;
+    }
+
+    if (audio.paused) {
         audio.play();
-        syncBackgroundMusic(); // Toca a música junto
-        btnPlay.innerText = "PAUSAR NARRAÇÃO";
+        isPausedManually = false;
+        btnPlay.innerText = "PAUSAR";
     } else {
-        isPausedManually = true;
         audio.pause();
-        bgMusic.pause(); // Para a música junto
-        btnPlay.innerText = "RETOMAR NARRAÇÃO";
+        isPausedManually = true;
+        btnPlay.innerText = "RETOMAR";
     }
 });
 
@@ -117,24 +134,40 @@ btnPrev.addEventListener('click', () => {
     }
 });
 
-// Suporte a Teclado
+/**
+ * SUPORTE A TECLADO E GESTOS
+ */
+
+// Atalhos do Teclado
 document.addEventListener('keydown', (e) => {
-    if (e.key === "ArrowRight") btnNext.click();
-    if (e.key === "ArrowLeft") btnPrev.click();
-    if (e.key === " ") {
+    // Espaço pausa/despausa
+    if (e.code === "Space") {
         e.preventDefault();
         btnPlay.click();
     }
+    // Setas navegam
+    if (e.code === "ArrowRight") btnNext.click();
+    if (e.code === "ArrowLeft") btnPrev.click();
 });
 
-// Suporte a Swipe
+// Swipe no Celular (Deslizar o dedo)
 let touchStartX = 0;
-document.addEventListener('touchstart', e => touchStartX = e.changedTouches[0].screenX);
-document.addEventListener('touchend', e => {
-    let touchEndX = e.changedTouches[0].screenX;
-    if (touchStartX - touchEndX > 60) btnNext.click();
-    if (touchEndX - touchStartX > 60) btnPrev.click();
+let touchEndX = 0;
+
+document.addEventListener('touchstart', e => {
+    touchStartX = e.changedTouches[0].screenX;
 });
 
-// Inicia o projeto
-init();
+document.addEventListener('touchend', e => {
+    touchEndX = e.changedTouches[0].screenX;
+    handleSwipe();
+});
+
+function handleSwipe() {
+    const swipeThreshold = 50; // Sensibilidade do deslize
+    if (touchStartX - touchEndX > swipeThreshold) {
+        btnNext.click(); // Deslizou para esquerda -> Próximo
+    } else if (touchEndX - touchStartX > swipeThreshold) {
+        btnPrev.click(); // Deslizou para direita -> Anterior
+    }
+}

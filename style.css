@@ -4,119 +4,257 @@
     --accent: #00e5ff;
     --text: #ffffff;
     --dim: #a0a0a0;
+    --transition: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-* { margin: 0; padding: 0; box-sizing: border-box; }
+/* Configuração Geral - Trava o Scroll do Navegador */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
 body {
     font-family: 'Inter', sans-serif;
-    background-color: var(--bg);
+    background: var(--bg);
     color: var(--text);
-    overflow: hidden;
     height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden; /* Impede que o site role para os lados ou para baixo */
 }
 
-/* DESTAQUE DE PALAVRAS CHAVE */
+/* Overlay de Início */
+#overlay {
+    position: fixed;
+    inset: 0;
+    background: var(--bg);
+    z-index: 2000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.start-card {
+    background: var(--card);
+    padding: 2rem;
+    border-radius: 20px;
+    border: 1px solid var(--accent);
+    text-align: center;
+    max-width: 500px;
+    box-shadow: 0 0 30px rgba(0, 229, 255, 0.2);
+}
+
+.start-card h1 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: var(--accent);
+}
+
+#btnStart {
+    background: var(--accent);
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 50px;
+    font-weight: 900;
+    font-size: 1rem;
+    cursor: pointer;
+    margin-top: 1.5rem;
+    transition: 0.3s;
+}
+
+#btnStart:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 20px var(--accent);
+}
+
+/* Destaques e Badge */
 .keyword {
     color: var(--accent);
     font-weight: 700;
-    text-shadow: 0 0 8px rgba(0, 229, 255, 0.4);
+}
+
+.badge {
+    background: rgba(0, 229, 255, 0.1);
+    color: var(--accent);
+    padding: 4px 12px;
+    border-radius: 5px;
+    font-size: 0.7rem;
+    font-weight: 800;
+    display: inline-block;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
 }
 
 /* Barra de Progresso */
 .progress-container {
-    position: fixed;
-    top: 0; width: 100%; height: 4px;
-    background: #111; z-index: 1000;
+    width: 100%;
+    height: 4px;
+    background: #111;
 }
+
 #progress-bar {
-    width: 0%; height: 100%;
+    height: 100%;
     background: var(--accent);
-    transition: width 0.4s ease;
+    width: 0%;
+    transition: 0.4s ease;
     box-shadow: 0 0 10px var(--accent);
 }
 
-/* Slides */
+/* Container de Slides */
 #slider {
-    width: 100%; height: calc(100vh - 120px);
+    flex: 1;
     position: relative;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .slide {
     position: absolute;
-    width: 100%; height: 100%;
-    display: flex; align-items: center; justify-content: center;
-    opacity: 0; visibility: hidden;
-    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-    padding: 20px;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: var(--transition);
+    padding: 10px;
 }
 
-.slide.active { opacity: 1; visibility: visible; }
+.slide.active {
+    opacity: 1;
+    visibility: visible;
+}
 
+/* Card de Conteúdo - O Coração do Layout Autoadaptável */
 .content-wrapper {
-    display: grid; grid-template-columns: 1fr 1.2fr;
-    gap: 40px; max-width: 1100px; width: 100%;
-    background: var(--card); padding: 40px;
-    border-radius: 24px; border: 1px solid #1a1a1a;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 1100px;
+    height: 98%; /* Ocupa a altura quase toda para não sobrar espaço */
+    background: var(--card);
+    border-radius: 20px;
+    border: 1px solid #1a1a1a;
+    overflow: hidden;
 }
 
-/* Imagens Limpas */
+/* Área da Imagem - Reduzida no Celular */
 .image-area {
-    width: 100%; aspect-ratio: 16/9;
-    background: #0f0f0f; border-radius: 16px;
-    overflow: hidden; display: flex; align-items: center;
-    justify-content: center; border: 1px solid #222;
-}
-.image-area img { 
-    width: 100%; 
-    height: 100%; 
-    object-fit: cover; 
-    transition: opacity 0.5s;
+    width: 100%;
+    height: 30vh; /* Ocupa 30% da altura da tela no celular */
+    background: #000;
+    flex-shrink: 0;
 }
 
-/* Texto */
-.text-area { overflow-y: auto; padding-right: 15px; }
-h1 { font-size: 2rem; margin-bottom: 15px; line-height: 1.2; }
-h2 { margin-bottom: 20px; font-size: 1.4rem; color: #fff; border-left: 4px solid var(--accent); padding-left: 15px; }
-p { margin-bottom: 15px; color: var(--dim); line-height: 1.6; }
-
-.list { list-style: none; }
-.list li { margin-bottom: 12px; color: var(--dim); line-height: 1.4; }
-
-.badge { 
-    background: rgba(0, 229, 255, 0.1); 
-    color: var(--accent); padding: 5px 12px; 
-    border-radius: 6px; font-size: 0.7rem; 
-    font-weight: 800; display: inline-block; margin-bottom: 15px;
+.image-area img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
-/* Controles */
+/* Área de Texto - Ajuste Dinâmico */
+.text-area {
+    padding: 1.2rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centraliza o texto verticalmente */
+    overflow-y: auto; /* Caso o texto seja muito grande em telas minúsculas */
+}
+
+h1 { font-size: 1.5rem; line-height: 1.2; margin-bottom: 0.5rem; }
+h2 { font-size: 1.2rem; color: var(--accent); margin-bottom: 0.8rem; border-left: 4px solid var(--accent); padding-left: 10px; }
+p { font-size: 0.9rem; color: var(--dim); line-height: 1.4; margin-bottom: 0.7rem; }
+
+/* Ajuste específico para o Slide 6 e Conclusão (muito texto) */
+.long-content p {
+    font-size: 0.8rem;
+    margin-bottom: 0.4rem;
+}
+
+/* Ajustes para Desktop (Computador) */
+@media (min-width: 768px) {
+    .content-wrapper {
+        flex-direction: row;
+        height: 80vh; /* No PC, o card é centralizado e elegante */
+        max-height: 600px;
+    }
+
+    .image-area {
+        width: 45%;
+        height: 100%;
+    }
+
+    .text-area {
+        padding: 3rem;
+    }
+
+    h1 { font-size: 2.2rem; }
+    h2 { font-size: 1.8rem; }
+    p { font-size: 1.1rem; line-height: 1.6; }
+}
+
+/* Controles de Navegação Inferiores */
 .controls {
-    position: fixed; bottom: 0; width: 100%; height: 120px;
-    background: var(--bg); display: flex;
-    align-items: center; justify-content: space-around;
+    height: 90px;
+    background: rgba(0,0,0,0.8);
+    backdrop-filter: blur(10px);
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
     border-top: 1px solid #111;
+    padding: 0 1rem;
 }
 
 .btn-nav {
-    background: none; border: 1px solid #222; color: #666;
-    padding: 12px 25px; cursor: pointer; border-radius: 10px; transition: 0.3s;
+    background: none;
+    border: 1px solid #333;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    transition: 0.3s;
 }
-.btn-nav:hover { border-color: var(--accent); color: var(--accent); }
+
+.btn-nav:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+}
 
 .btn-main {
-    background: var(--accent); color: #000; border: none;
-    padding: 16px 35px; border-radius: 40px; font-weight: 900; cursor: pointer;
-    box-shadow: 0 4px 15px rgba(0, 229, 255, 0.3);
+    background: var(--accent);
+    border: none;
+    padding: 12px 25px;
+    border-radius: 30px;
+    font-weight: 900;
+    cursor: pointer;
+    font-size: 0.9rem;
 }
 
-.player { text-align: center; }
-#slide-info { display: block; font-size: 0.7rem; color: #444; margin-top: 10px; font-weight: 700; }
+.player-container {
+    text-align: center;
+}
 
-/* Mobile */
-@media (max-width: 768px) {
-    .content-wrapper { grid-template-columns: 1fr; padding: 25px; margin-top: -30px; }
-    .image-area { height: 160px; }
-    h1 { font-size: 1.5rem; }
-    .controls { height: 140px; flex-wrap: wrap; }
+#slide-info {
+    display: block;
+    font-size: 0.6rem;
+    color: #555;
+    margin-top: 5px;
+    text-transform: uppercase;
+    font-weight: 700;
+}
+
+/* Esconder barra de rolagem interna mas manter funcionalidade */
+.text-area::-webkit-scrollbar {
+    width: 3px;
+}
+.text-area::-webkit-scrollbar-thumb {
+    background: var(--accent);
+    border-radius: 10px;
 }
