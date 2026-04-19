@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Resiliência Cibernética</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Barra de Progresso Superior -->
+    <div class="progress-container">
+        <div id="progress-bar"></div>
+    </div>
+
+    <main id="slider">
+        
+        <!-- SLIDE 1: CAPA -->
+        <section class="slide active">
+            <div class="content-wrapper">
+                <div class="image-area">
+                    <img src="img/slide1.jpg" alt="Imagem do Slide 1" onerror="this.style.opacity='0'">
+                </div>
+                <div class="text-area">
+                    <h1>PROGRAMA DE CONSCIENTIZAÇÃO E RESILIÊNCIA CIBERNÉTICA</h1>
+                    <p>Atividade Extensionista: Governança e Comportamento Profissional</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 2: 1. PILARES -->
+        <section class="slide">
+            <div class="content-wrapper">
+                <div class="image-area">
+                    <img src="img/slide2.jpg" alt="Imagem do Slide 2" onerror="this.style.opacity='0'">
+                </div>
+                <div class="text-area">
+                    <h2>1. OS PILARES DA SEGURANÇA (TRÍADE CID)</h2>
+                    <p>A segurança da informação garante a continuidade operacional através de três diretrizes:</p>
+                    <p><span class="keyword">Confidencialidade:</span> Garantia de que a informação seja acessível apenas por pessoas autorizadas.</p>
+                    <p><span class="keyword">Integridade:</span> Salvaguarda da precisão da informação, prevenindo alterações indevidas, sejam elas intencionais ou acidentais.</p>
+                    <p><span class="keyword">Disponibilidade:</span> Garantia de que sistemas e dados estejam acessíveis sempre que necessário (on-demand).</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 3: 2. REGRAS DE OURO -->
+        <section class="slide">
+            <div class="content-wrapper">
+                <div class="image-area">
+                    <img src="img/slide3.jpg" alt="Imagem do Slide 3" onerror="this.style.opacity='0'">
+                </div>
+                <div class="text-area">
+                    <h2>2. AS 5 REGRAS DE OURO DA ATENÇÃO</h2>
+                    <p><span class="keyword">Se é urgente demais: Pause e valide.</span> A urgência induz ao erro e é a principal ferramenta para contornar protocolos.</p>
+                    <p><span class="keyword">Se pede para pular um processo: Desconfie.</span> Processos garantem sua segurança jurídica e a integridade da operação.</p>
+                    <p><span class="keyword">Se não é ferramenta oficial:</span> Não utilize sem validação prévia da TI (Shadow IT).</p>
+                    <p><span class="keyword">Se parece estranho: Não execute.</span> Reporte ao suporte técnico.</p>
+                    <p><span class="keyword">Se não tem certeza: Pergunte.</span> Validar uma ação leva segundos; remediar um incidente pode levar dias.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 4: 3. IDENTIDADE -->
+        <section class="slide">
+            <div class="content-wrapper">
+                <div class="image-area">
+                    <img src="img/slide4.jpg" alt="Imagem do Slide 4" onerror="this.style.opacity='0'">
+                </div>
+                <div class="text-area">
+                    <h2>3. IDENTIDADE CORPORATIVA E ACCOUNTABILITY (WIN + L)</h2>
+                    <p>Sua credencial de acesso é sua representação nos sistemas. Toda ação realizada sob seu perfil é atribuída a você nos registros de auditoria (Accountability), podendo gerar responsabilização administrativa.</p>
+                    <p><span class="keyword">Impersonação Corporativa:</span> Deixar a estação desbloqueada permite que terceiros visualizem dados ou enviem comunicações em seu nome, comprometendo o princípio do Não-Repúdio (quando não se pode negar a autoria de uma ação).</p>
+                    <p><span class="keyword">O Hábito Profissional: Bloqueie a estação (Windows + L)</span> toda vez que se ausentar da mesa, independentemente do tempo.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 5: 4. SEGURANÇA FÍSICA -->
+        <section class="slide">
+            <div class="content-wrapper">
+                <div class="image-area">
+                    <img src="img/slide5.jpg" alt="Imagem do Slide 5" onerror="this.style.opacity='0'">
+                </div>
+                <div class="text-area">
+                    <h2>4. SEGURANÇA FÍSICA E POLÍTICA DE MESA LIMPA</h2>
+                    <p>A proteção da informação começa no ambiente físico. Um documento exposto é uma vulnerabilidade crítica.</p>
+                    <p><span class="keyword">Mesa Limpa:</span> Ao final do expediente ou em ausências prolongadas, nenhum documento contendo dados sensíveis (contratos, notas fiscais, listas de clientes, relatórios financeiros) deve ser deixado sobre a mesa.</p>
+                    <p><span class="keyword">Gestão de Senhas Físicas:</span> É estritamente proibido anotar senhas em Post-its, agendas abertas ou embaixo do teclado.</p>
+                    <p><span class="keyword">Impressões: Retire imediatamente</span> qualquer documento enviado para a impressora. Documentos esquecidos em bandejas de impressão são grandes vetores de vazamento de dados internos.</p>
+                    <p><span class="keyword">Dispositivos Removíveis: Nunca conecte pendrives</span> ou dispositivos desconhecidos na sua estação de trabalho.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 6: 5. GESTÃO DE CREDENCIAIS -->
+        <section class="slide">
+            <div class="content-wrapper">
+                <div class="image-area">
+                    <img src="img/slide6.jpg" alt="Imagem do Slide 6" onerror="this.style.opacity='0'">
+                </div>
+                <div class="text-area">
+                    <h2>5. GESTÃO DE CREDENCIAIS (PADRÃO NIST)</h2>
+                    <p>A segurança de uma conta depende mais do comprimento do que apenas da troca de símbolos.</p>
+                    <p><span class="keyword">Priorize Passphrases:</span> Prefira frases longas (Ex: SapatosConfortaveis_Usaflex_2026). Elas são mais resistentes a ataques de força bruta e mais fáceis de memorizar.</p>
+                    <p><span class="keyword">Entropia:</span> Utilize letras maiúsculas, minúsculas e números para aumentar a resistência da frase.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 7: 6. CONTINUIDADE -->
+        <section class="slide">
+            <div class="content-wrapper">
+                <div class="image-area">
+                    <img src="img/slide7.jpg" alt="Imagem do Slide 7" onerror="this.style.opacity='0'">
+                </div>
+                <div class="text-area">
+                    <h2>6. CONTINUIDADE OPERACIONAL E BACKUP</h2>
+                    <p><span class="keyword">Arquivos Locais:</span> Pastas como "Desktop" e "Documentos" podem não estar incluídas na política de backup corporativa. Se o hardware falhar, os dados salvos apenas localmente serão perdidos.</p>
+                    <p><span class="keyword">Salvamento Homologado:</span> Utilize exclusivamente o SharePoint ou OneDrive corporativo para garantir backup, versionamento e recuperação de dados.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 8: 7. SHADOW IT -->
+        <section class="slide">
+            <div class="content-wrapper">
+                <div class="image-area">
+                    <img src="img/slide8.jpg" alt="Imagem do Slide 8" onerror="this.style.opacity='0'">
+                </div>
+                <div class="text-area">
+                    <h2>7. SHADOW IT E GOVERNANÇA DE FERRAMENTAS</h2>
+                    <p>O uso de ferramentas não autorizadas (<span class="keyword">Shadow IT</span>) configura um risco crítico de exfiltração de dados e violação de conformidade.</p>
+                    <p><span class="keyword">Uso de Ferramentas de Terceiros:</span> Utilize exclusivamente os softwares homologados pela TI e gestores.</p>
+                    <p><span class="keyword">Validação Prévia:</span> Antes de utilizar sites externos (ex: conversores de arquivos, editores de PDF online), valide com a TI. Esses serviços podem armazenar, processar ou reutilizar os dados enviados sem qualquer governança ou controle corporativo.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 9: 8. INTEGRIDADE NA COMUNICAÇÃO -->
+        <section class="slide">
+            <div class="content-wrapper">
+                <div class="image-area">
+                    <img src="img/slide9.jpg" alt="Imagem do Slide 9" onerror="this.style.opacity='0'">
+                </div>
+                <div class="text-area">
+                    <h2>8. INTEGRIDADE NA COMUNICAÇÃO E ENGENHARIA SOCIAL</h2>
+                    <p>Ataques de manipulação psicológica exploram urgência e autoridade para induzir decisões rápidas sem verificação.</p>
+                    <p><span class="keyword">No Outlook:</span> Verifique o endereço real do remetente. E-mails legítimos da empresa terminam obrigatoriamente em <span class="keyword">@usaflex.com.br</span>. Desconfie de domínios genéricos (@gmail, @outlook) ou visualmente similares (Spoofing). Passe o mouse sobre links para conferir o destino real antes de clicar.</p>
+                    <p><span class="keyword">No Teams:</span> Observe a etiqueta <span class="keyword">"Externo"</span>. Se alguém externo solicitar dados sensíveis ou se apresentar como suporte ou gestor, <span class="keyword">interrompa o contato e reporte.</span></p>
+                    <p><span class="keyword">Arquivos Recebidos:</span> Nenhuma extensão (.pdf, .xlsx, .jpg) é totalmente segura. Se um arquivo solicitar habilitação de macros/conteúdo, execução ativa ou credenciais de rede, interrompa a ação e avise a TI.</p>
+                    <p><span class="keyword">Credenciais:</span> Nunca insira sua senha em páginas acessadas por links recebidos via e-mail ou chat sem validação prévia.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 10: 9. GLOSSÁRIO -->
+        <section class="slide">
+            <div class="content-wrapper">
+                <div class="image-area">
+                    <img src="img/slide10.jpg" alt="Imagem do Slide 10" onerror="this.style.opacity='0'">
+                </div>
+                <div class="text-area">
+                    <h2>9. GLOSSÁRIO TÉCNICO</h2>
+                    <p><span class="keyword">PHISHING:</span> Iscas digitais para captura de credenciais.</p>
+                    <p><span class="keyword">RANSOMWARE:</span> Software malicioso que sequestra dados via criptografia.</p>
+                    <p><span class="keyword">MFA FATIGUE (Fadiga de MFA):</span> Quando um invasor bombardeia seu celular com notificações de acesso para te induzir a aceitar por erro. Mitigação: Negue acessos que você não iniciou e mude sua senha.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 11: CHECKLIST -->
+        <section class="slide">
+            <div class="content-wrapper">
+                <div class="image-area">
+                    <img src="img/slide11.jpg" alt="Imagem do Slide 11" onerror="this.style.opacity='0'">
+                </div>
+                <div class="text-area">
+                    <h2>CHECKLIST DE CONFORMIDADE</h2>
+                    <p>☐ Minha senha é longa (Passphrase) e memorizável?</p>
+                    <p>☐ O bloqueio Win+L é um reflexo automático em minha rotina?</p>
+                    <p>☐ Minha mesa está livre de documentos sensíveis e senhas anotadas?</p>
+                    <p>☐ Meus arquivos de trabalho estão salvos na nuvem oficial (SharePoint/OneDrive)?</p>
+                    <p>☐ Trato anexos de e-mail com cautela, conferindo sempre o remetente real?</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 12: CONCLUSÃO -->
+        <section class="slide">
+            <div class="content-wrapper">
+                <div class="image-area">
+                    <img src="img/slide12.jpg" alt="Imagem do Slide 12" onerror="this.style.opacity='0'">
+                </div>
+                <div class="text-area">
+                    <h2>CONCLUSÃO</h2>
+                    <p><span class="keyword">Segurança cibernética administrativa</span> é sobre <span class="keyword">postura, vigilância e conformidade</span>. O profissional consciente compreende que as <span class="keyword">ferramentas oficiais</span> existem para proteger os ativos da empresa e sua própria carreira. Na dúvida, o suporte técnico (<span class="keyword">Service Desk</span>) é o seu melhor aliado.</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Controles -->
+    <nav class="controls">
+        <button id="btnPrev" class="btn-nav">ANTERIOR</button>
+        
+        <div class="player-container">
+            <button id="btnPlay" class="btn-main">PAUSAR NARRAÇÃO</button>
+            <span id="slide-info">Slide 1 / 12</span>
+        </div>
+
+        <button id="btnNext" class="btn-nav">PRÓXIMO</button>
+    </nav>
+
+    <audio id="audioPlayer"></audio>
+
+    <script src="script.js"></script>
+</body>
+</html>
