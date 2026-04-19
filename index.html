@@ -14,17 +14,15 @@
         <div class="start-card">
             <span class="badge">TREINAMENTO INSTITUCIONAL</span>
             <h1>PROGRAMA DE CONSCIENTIZAÇÃO E RESILIÊNCIA CIBERNÉTICA</h1>
-            <p>Este treinamento é narrado e os slides avançam automaticamente ao final de cada explicação.</p>
+            <p>Este treinamento possui música e narração automática.</p>
             <button id="btnStart">INICIAR TREINAMENTO</button>
         </div>
     </div>
 
-    <!-- BARRA DE PROGRESSO -->
     <div class="progress-container">
         <div id="progress-bar"></div>
     </div>
 
-    <!-- CONTAINER DOS SLIDES -->
     <main id="slider" style="display: none;">
         
         <!-- SLIDE 1: CAPA -->
@@ -75,10 +73,7 @@
                 <div class="text-area">
                     <h2>3. USO DO COMPUTADOR E RESPONSABILIDADE (WIN + L)</h2>
                     <p>Quando você está logado no computador, <span class="keyword">qualquer ação feita nele fica registrada como se fosse você.</span></p>
-                    <p>Se você deixar o computador desbloqueado, outra pessoa pode:</p>
-                    <p>• acessar informações da empresa</p>
-                    <p>• enviar mensagens no seu nome</p>
-                    <p>• realizar ações sem o seu conhecimento</p>
+                    <p>Se você deixar o computador desbloqueado, outra pessoa pode acessar informações da empresa, enviar mensagens no seu nome e realizar ações sem o seu conhecimento.</p>
                     <p>Isso pode gerar <span class="keyword">problemas e responsabilidades</span> para você.</p>
                     <p><strong>Boa prática:</strong> Sempre bloqueie o computador ao se afastar, mesmo que seja por pouco tempo. Use o atalho: <span class="keyword">Windows + L</span></p>
                 </div>
@@ -119,7 +114,7 @@
                 <div class="image-area"><img src="img/slide7.jpg" alt="Slide 7" onerror="this.style.opacity='0'"></div>
                 <div class="text-area">
                     <h2>6. CONTINUIDADE OPERACIONAL E BACKUP</h2>
-                    <p><strong>Arquivos locais:</strong> Pastas como “Desktop” e “Documentos” ficam armazenadas apenas no computador e <span class="keyword">podem não estar incluídas no backup</span> da empresa. Se o computador apresentar problema, for formatado ou substituído, esses arquivos podem ser perdidos definitivamente.</p>
+                    <p><strong>Arquivos locais:</strong> Pastas como “Desktop” e “Documentos” ficam armazenadas apenas no computador e <span class="keyword">podem não estar incluídas no backup</span> da empresa.</p>
                     <p><strong>Armazenamento corporativo (nuvem):</strong> Sempre salve seus arquivos em ferramentas homologadas como <span class="keyword">Microsoft OneDrive ou SharePoint</span>. Elas garantem: backup automático, acesso de diferentes dispositivos e versionamento.</p>
                     <p><strong>Importante:</strong> “Nuvem” é uma <span class="keyword">forma de armazenamento</span> em servidores da empresa acessíveis pela internet.</p>
                     <p><strong>Boa prática:</strong> Sempre verifique se o arquivo está salvo na nuvem. <span class="keyword">Evite manter arquivos importantes apenas no computador.</span></p>
@@ -133,31 +128,23 @@
                 <div class="image-area"><img src="img/slide8.jpg" alt="Slide 8" onerror="this.style.opacity='0'"></div>
                 <div class="text-area">
                     <h2>7. SHADOW IT E GOVERNANÇA DE FERRAMENTAS</h2>
-                    <p>O uso de ferramentas não autorizadas (<span class="keyword">Shadow IT</span>) configura um risco crítico de exfiltração de dados e violação de conformidade.</p>
+                    <p>O uso de ferramentas não autorizadas (<span class="keyword">Shadow IT</span>) configura um risco crítico de exfiltração de dados.</p>
                     <p>Utilize exclusivamente os softwares homologados pela TI e gestores.</p>
-                    <p><span class="keyword">Validação Prévia:</span> Antes de utilizar sites externos (ex: conversores de arquivos, editores de PDF online), valide com a TI. Esses serviços podem armazenar, processar ou reutilizar os dados enviados sem qualquer governança corporativa.</p>
+                    <p><span class="keyword">Validação Prévia:</span> Antes de utilizar sites externos (ex: conversores de arquivos, editores de PDF online), valide com a TI. Esses serviços podem armazenar seus dados sem qualquer governança corporativa.</p>
                 </div>
             </div>
         </section>
 
-        <!-- SLIDE 9: 8. INTEGRIDADE E ENG. SOCIAL (TEXTO ATUALIZADO) -->
+        <!-- SLIDE 9: 8. INTEGRIDADE E ENG. SOCIAL -->
         <section class="slide">
             <div class="content-wrapper long-content">
                 <div class="image-area"><img src="img/slide9.jpg" alt="Slide 9" onerror="this.style.opacity='0'"></div>
                 <div class="text-area">
                     <h2>8. INTEGRIDADE NA COMUNICAÇÃO E ENGENHARIA SOCIAL</h2>
-                    <p>Ataques de manipulação psicológica exploram urgência e autoridade para induzir decisões rápidas.</p>
-                    
-                    <p><strong>E-mail interno (Outlook):</strong> Mesmo sendo interno, <span class="keyword">nem toda mensagem é confiável.</span> Fique atento a situações como:</p>
-                    <p>• Um colega ou gestor pedindo algo <span class="keyword">urgente fora do comum</span> (ex: “me manda essa planilha agora”, “preciso que você faça isso rápido”)</p>
-                    <p>• Pedido de acesso, envio de arquivos ou alteração de informações sem explicação clara</p>
-                    <p>• Mensagens que fogem do comportamento normal da pessoa</p>
-                    
+                    <p><strong>E-mail interno (Outlook):</strong> Mesmo sendo interno, <span class="keyword">nem toda mensagem é confiável.</span></p>
+                    <p>Fique atento a situações como: Um colega ou gestor pedindo algo <span class="keyword">urgente fora do comum</span>; Pedido de acesso ou alteração de informações sem explicação clara; Mensagens que fogem do comportamento normal da pessoa.</p>
                     <p><strong>O que fazer:</strong> <span class="keyword">Confirme diretamente com a pessoa</span> (presencialmente ou por telefone). Em caso de dúvida, <span class="keyword">não execute a ação e avise a TI.</span></p>
-
-                    <p><span class="keyword">No Outlook:</span> Verifique o endereço real do remetente (@usaflex.com.br). Desconfie de domínios genéricos ou similares.</p>
-                    <p><span class="keyword">No Teams:</span> Observe a etiqueta "Externo". Se alguém externo solicitar dados, interrompa o contato.</p>
-                    <p><span class="keyword">Arquivos:</span> Se um anexo pedir para habilitar conteúdo ou credenciais de rede, interrompa a ação.</p>
+                    <p><span class="keyword">Canais:</span> No Outlook verifique o endereço @usaflex.com.br. No Teams observe a etiqueta "Externo". No caso de arquivos, se um anexo pedir para habilitar conteúdo ou credenciais de rede, interrompa a ação.</p>
                 </div>
             </div>
         </section>
@@ -170,7 +157,7 @@
                     <h2>9. GLOSSÁRIO TÉCNICO DE RISCOS</h2>
                     <p><span class="keyword">PHISHING:</span> Iscas digitais para captura de credenciais.</p>
                     <p><span class="keyword">RANSOMWARE:</span> Software malicioso que sequestra dados via criptografia.</p>
-                    <p><span class="keyword">MFA FATIGUE (Fadiga de MFA):</span> Quando um invasor bombardeia seu celular com notificações de acesso para te induzir a aceitar por erro. Mitigação: Negue acessos que você não iniciou e mude sua senha.</p>
+                    <p><span class="keyword">MFA FATIGUE:</span> Bombardeio de notificações para te induzir a aceitar por erro. Mitigação: <span class="keyword">Negue acessos</span> que você não iniciou.</p>
                 </div>
             </div>
         </section>
@@ -197,7 +184,7 @@
                 <div class="text-area">
                     <h2>CONCLUSÃO</h2>
                     <p><span class="keyword">Segurança cibernética administrativa</span> é sobre postura, vigilância e conformidade.</p>
-                    <p>O profissional consciente compreende que as ferramentas oficiais existem para proteger os ativos da empresa e sua própria carreira. Na dúvida, o suporte técnico (<span class="keyword">Service Desk</span>) é o seu melhor aliado.</p>
+                    <p>O profissional consciente compreende que as ferramentas oficiais existem para proteger os ativos da empresa e sua carreira. Na dúvida, o <span class="keyword">Service Desk</span> é seu aliado.</p>
                 </div>
             </div>
         </section>
@@ -214,7 +201,10 @@
         <button id="btnNext" class="btn-nav">PRÓXIMO</button>
     </nav>
 
+    <!-- ÁUDIOS -->
     <audio id="audioPlayer"></audio>
+    <audio id="bgMusic" loop src="audio/musica.mp3"></audio> <!-- MÚSICA DE FUNDO -->
+
     <script src="script.js"></script>
 </body>
 </html>
