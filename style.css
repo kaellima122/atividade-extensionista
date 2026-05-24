@@ -7,7 +7,6 @@
     --transition: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Configuração Geral - Trava o Scroll do Navegador */
 * {
     margin: 0;
     padding: 0;
@@ -19,10 +18,11 @@ body {
     background: var(--bg);
     color: var(--text);
     height: 100vh;
+    height: 100dvh; /* Altura dinâmica para mobile */
     width: 100vw;
     display: flex;
     flex-direction: column;
-    overflow: hidden; /* Impede que o site role para os lados ou para baixo */
+    overflow: hidden;
 }
 
 /* Overlay de Início */
@@ -44,13 +44,7 @@ body {
     border: 1px solid var(--accent);
     text-align: center;
     max-width: 500px;
-    box-shadow: 0 0 30px rgba(0, 229, 255, 0.2);
-}
-
-.start-card h1 {
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
-    color: var(--accent);
+    width: 100%;
 }
 
 #btnStart {
@@ -59,58 +53,33 @@ body {
     padding: 1rem 2rem;
     border-radius: 50px;
     font-weight: 900;
-    font-size: 1rem;
     cursor: pointer;
     margin-top: 1.5rem;
-    transition: 0.3s;
 }
 
-#btnStart:hover {
-    transform: scale(1.05);
-    box-shadow: 0 0 20px var(--accent);
-}
-
-/* Destaques e Badge */
-.keyword {
-    color: var(--accent);
-    font-weight: 700;
-}
-
+/* Destaques */
+.keyword { color: var(--accent); font-weight: 700; }
 .badge {
     background: rgba(0, 229, 255, 0.1);
     color: var(--accent);
-    padding: 4px 12px;
+    padding: 4px 10px;
     border-radius: 5px;
-    font-size: 0.7rem;
+    font-size: 0.65rem;
     font-weight: 800;
+    margin-bottom: 0.5rem;
     display: inline-block;
-    margin-bottom: 1rem;
-    text-transform: uppercase;
 }
 
 /* Barra de Progresso */
-.progress-container {
-    width: 100%;
-    height: 4px;
-    background: #111;
-}
+.progress-container { width: 100%; height: 4px; background: #111; }
+#progress-bar { height: 100%; background: var(--accent); width: 0%; transition: 0.4s ease; }
 
-#progress-bar {
-    height: 100%;
-    background: var(--accent);
-    width: 0%;
-    transition: 0.4s ease;
-    box-shadow: 0 0 10px var(--accent);
-}
-
-/* Container de Slides */
+/* Slides */
 #slider {
     flex: 1;
     position: relative;
     width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    overflow: hidden;
 }
 
 .slide {
@@ -122,139 +91,127 @@ body {
     opacity: 0;
     visibility: hidden;
     transition: var(--transition);
-    padding: 10px;
+    padding: 10px; /* Margem de segurança para telas não infinitas */
 }
 
-.slide.active {
-    opacity: 1;
-    visibility: visible;
-}
+.slide.active { opacity: 1; visibility: visible; }
 
-/* Card de Conteúdo - O Coração do Layout Autoadaptável */
+/* Card de Conteúdo */
 .content-wrapper {
     display: flex;
     flex-direction: column;
     width: 100%;
     max-width: 1100px;
-    height: 98%; /* Ocupa a altura quase toda para não sobrar espaço */
+    height: 100%;
+    max-height: 95%; /* Garante que não cole nas bordas superior/inferior */
     background: var(--card);
-    border-radius: 20px;
+    border-radius: 15px;
     border: 1px solid #1a1a1a;
     overflow: hidden;
 }
 
-/* Área da Imagem - Reduzida no Celular */
 .image-area {
     width: 100%;
-    height: 30vh; /* Ocupa 30% da altura da tela no celular */
+    height: 25vh; /* Diminuído para sobrar mais espaço para o texto */
     background: #000;
     flex-shrink: 0;
 }
 
-.image-area img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
+.image-area img { width: 100%; height: 100%; object-fit: cover; }
 
-/* Área de Texto - Ajuste Dinâmico */
 .text-area {
-    padding: 1.2rem;
+    padding: 1rem;
     flex: 1;
     display: flex;
     flex-direction: column;
-    justify-content: center; /* Centraliza o texto verticalmente */
-    overflow-y: auto; /* Caso o texto seja muito grande em telas minúsculas */
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: var(--accent) transparent;
 }
 
-h1 { font-size: 1.5rem; line-height: 1.2; margin-bottom: 0.5rem; }
-h2 { font-size: 1.2rem; color: var(--accent); margin-bottom: 0.8rem; border-left: 4px solid var(--accent); padding-left: 10px; }
-p { font-size: 0.9rem; color: var(--dim); line-height: 1.4; margin-bottom: 0.7rem; }
+/* Títulos e Textos Mobile */
+h1 { font-size: 1.3rem; margin-bottom: 0.5rem; }
+h2 { font-size: 1.1rem; color: var(--accent); margin-bottom: 0.6rem; border-left: 3px solid var(--accent); padding-left: 8px; }
+p { font-size: 0.85rem; color: var(--dim); line-height: 1.4; margin-bottom: 0.6rem; }
 
-/* Ajuste específico para o Slide 6 e Conclusão (muito texto) */
+/* AJUSTE PARA O SLIDE 8 (Long Content / Engenharia Social) */
+.long-content .text-area {
+    justify-content: flex-start;
+}
+
 .long-content p {
-    font-size: 0.8rem;
-    margin-bottom: 0.4rem;
+    font-size: 0.8rem; /* Diminuído levemente */
+    margin-bottom: 0.3rem; /* Espaçamento mais apertado */
+    line-height: 1.3;
 }
 
-/* Ajustes para Desktop (Computador) */
+.long-content strong {
+    display: block;
+    margin-top: 5px;
+    color: var(--text);
+}
+
+/* Ajustes Desktop */
 @media (min-width: 768px) {
     .content-wrapper {
         flex-direction: row;
-        height: 80vh; /* No PC, o card é centralizado e elegante */
+        height: 80vh;
         max-height: 600px;
     }
-
-    .image-area {
-        width: 45%;
-        height: 100%;
-    }
-
-    .text-area {
-        padding: 3rem;
-    }
-
-    h1 { font-size: 2.2rem; }
-    h2 { font-size: 1.8rem; }
-    p { font-size: 1.1rem; line-height: 1.6; }
+    .image-area { width: 45%; height: 100%; }
+    .text-area { padding: 2.5rem; }
+    h1 { font-size: 2rem; }
+    h2 { font-size: 1.6rem; }
+    p { font-size: 1rem; line-height: 1.6; }
+    .long-content p { font-size: 0.95rem; }
 }
 
-/* Controles de Navegação Inferiores */
+/* Painel de Controle - FIX DOS BOTÕES SAINDO DA TELA */
 .controls {
-    height: 90px;
-    background: rgba(0,0,0,0.8);
-    backdrop-filter: blur(10px);
+    height: 75px; /* Altura reduzida */
+    background: rgba(0,0,0,0.9);
     display: flex;
     align-items: center;
-    justify-content: space-around;
+    justify-content: center; /* Centralizado */
+    gap: 15px; /* Espaço fixo entre botões */
+    padding: 0 10px;
     border-top: 1px solid #111;
-    padding: 0 1rem;
 }
 
 .btn-nav {
-    background: none;
+    background: #111;
     border: 1px solid #333;
     color: white;
-    padding: 10px 20px;
-    border-radius: 10px;
+    padding: 8px 12px;
+    border-radius: 8px;
     cursor: pointer;
-    font-size: 0.8rem;
-    transition: 0.3s;
-}
-
-.btn-nav:hover {
-    border-color: var(--accent);
-    color: var(--accent);
+    font-size: 0.7rem;
+    font-weight: 700;
+    flex-shrink: 0; /* Impede o botão de esmagar */
 }
 
 .btn-main {
     background: var(--accent);
     border: none;
-    padding: 12px 25px;
-    border-radius: 30px;
+    padding: 10px 20px;
+    border-radius: 25px;
     font-weight: 900;
-    cursor: pointer;
-    font-size: 0.9rem;
+    font-size: 0.8rem;
+    flex-shrink: 0;
 }
 
 .player-container {
-    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 #slide-info {
-    display: block;
-    font-size: 0.6rem;
-    color: #555;
-    margin-top: 5px;
-    text-transform: uppercase;
-    font-weight: 700;
+    font-size: 0.55rem;
+    color: #666;
+    margin-top: 4px;
 }
 
-/* Esconder barra de rolagem interna mas manter funcionalidade */
-.text-area::-webkit-scrollbar {
-    width: 3px;
-}
-.text-area::-webkit-scrollbar-thumb {
-    background: var(--accent);
-    border-radius: 10px;
-}
+/* Custom Scrollbar */
+.text-area::-webkit-scrollbar { width: 4px; }
+.text-area::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 10px; }
